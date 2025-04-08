@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.security.Timestamp;
+
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -21,8 +23,13 @@ public class Producto {
     Money precio;
     int stock;
     boolean status;
-    Timestamp createdAt;
-    Timestamp updatedAt;
+    ZonedDateTime createdAt;
+    ZonedDateTime updatedAt;
+
+    Marca marca; // referencia (no modificable desde Producto)
+    Categoria categoria; // referencia (no modificable desde Producto)
+
+    List<ImagenProducto> imagenes; // parte del agregado
 
 
 }

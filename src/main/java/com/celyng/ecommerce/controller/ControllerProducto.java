@@ -1,8 +1,13 @@
 package com.celyng.ecommerce.controller;
 
 
+import com.celyng.ecommerce.application.ProductoService;
+import com.celyng.ecommerce.application.models.ProductoRequest;
 import com.celyng.ecommerce.domain.models.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +21,13 @@ public class ControllerProducto {
     private ProductoService productoService;
 
     @PostMapping
-    public Producto crearProducto(@RequestBody ProductoRequest request) {
-        return productoService.crearProducto(request);
+    public ResponseEntity<Producto> crearProducto(@RequestBody ProductoRequest request) {
+        Producto creado = productoService.crearProducto(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
 
-
+    /*
     @GetMapping
     public List<Producto> obtenerTodos() {
         return productoService.obtenerTodos();
@@ -30,7 +36,7 @@ public class ControllerProducto {
 
     @GetMapping("/{id}")
     public Producto obtenerPorId(@PathVariable Long id) {
-        return productoService.obtenerPorId(id)
+        return (Producto) productoService.obtenerPorId(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
@@ -46,6 +52,6 @@ public class ControllerProducto {
     public void eliminarProducto(@PathVariable Long id) {
         productoService.eliminarProducto(id);
     }
-
+    */
 }
 

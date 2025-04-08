@@ -14,6 +14,10 @@ public class Money {
 
     public static final Money ZERO = new Money(BigDecimal.ZERO);
 
+    public Money(BigDecimal cantidad){
+        this.cantidad = cantidad;
+    }
+
     public boolean isGreaterThanZero(){
         return this.cantidad != null && this.cantidad.compareTo(BigDecimal.ZERO) > 0;
     }
