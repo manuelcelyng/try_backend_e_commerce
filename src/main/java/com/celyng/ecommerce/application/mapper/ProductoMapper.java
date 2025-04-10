@@ -6,6 +6,7 @@ import com.celyng.ecommerce.repository.entity.ImagenProductoEntity;
 import com.celyng.ecommerce.repository.entity.ProductoEntity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductoMapper {
 

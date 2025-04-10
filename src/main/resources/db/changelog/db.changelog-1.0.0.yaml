@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-marcas-table
+      author: manuelcely
+      changes:
+        - createTable:
+            tableName: marcas
+            columns:
+              - column:
+                  name: marca_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nombre
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: descripcion
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false

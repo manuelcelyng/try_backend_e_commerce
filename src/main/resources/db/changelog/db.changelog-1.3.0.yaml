@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-imagenes-producto-table
+      author: tu-nombre
+      changes:
+        - createTable:
+            tableName: imagenes_producto
+            columns:
+              - column:
+                  name: imagen_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: producto_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: url
+                  type: VARCHAR(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: imagenes_producto
+            baseColumnNames: producto_id
+            referencedTableName: productos
+            referencedColumnNames: producto_id
+            constraintName: fk_imagen_producto_producto
