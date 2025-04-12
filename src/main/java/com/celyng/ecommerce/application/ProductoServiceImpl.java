@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -40,7 +41,6 @@ public class ProductoServiceImpl implements ProductoService {
         Categoria categoria = CategoriaMapper.toDomain(checkCategoria(request.getCategoriaId()));
 
         Producto producto = Producto.builder()
-                .productoId(UUID.randomUUID())
                 .nombre(request.getNombre())
                 .descripcion(request.getDescripcion())
                 .referencia(request.getReferencia())
@@ -51,13 +51,13 @@ public class ProductoServiceImpl implements ProductoService {
                 .categoria(categoria)
                 .createdAt(ZonedDateTime.now())
                 .updatedAt(ZonedDateTime.now())
+                .imagenes(new ArrayList<>())
                 .build();
 
 
         request.getImagenes().forEach(
                 imagenRequest -> {
                     ImagenProducto imagenProducto = ImagenProducto.builder()
-                            .imagenId(UUID.randomUUID())
                             .url(imagenRequest.getUrl())
                             .productoId(producto.getProductoId())
                             .createdAt(ZonedDateTime.now())
@@ -72,6 +72,11 @@ public class ProductoServiceImpl implements ProductoService {
 
 
         return ProductoMapper.toDomain(productoSaved);
+    }
+
+    @Override
+    public void eliminarProducto(UUID id) {
+        productoServiceImplHelper.deleteById(id);
     }
 
 

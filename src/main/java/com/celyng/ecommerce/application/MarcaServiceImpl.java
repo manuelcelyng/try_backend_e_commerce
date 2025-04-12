@@ -5,21 +5,22 @@ import com.celyng.ecommerce.application.port.in.MarcaService;
 import com.celyng.ecommerce.application.port.out.MarcaRepository;
 import com.celyng.ecommerce.domain.models.Marca;
 import com.celyng.ecommerce.infrastructure.entypoint.models.MarcaRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class MarcaServiceImpl implements MarcaService {
 
-    MarcaRepository repository;
+    private final MarcaRepository repository;
 
 
     @Override
     public Marca crearMarca(MarcaRequest marcaRequest) {
         Marca marca = Marca.builder()
-                .marcaId(UUID.randomUUID())
                 .nombre(marcaRequest.getNombre())
                 .descripcion(marcaRequest.getDescripcion())
                 .createdAt(ZonedDateTime.now())

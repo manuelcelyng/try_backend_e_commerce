@@ -1,7 +1,8 @@
 package com.celyng.ecommerce.infrastructure.entypoint.controller;
 
 
-import com.celyng.ecommerce.application.ProductoServiceImpl;
+
+import com.celyng.ecommerce.application.port.in.ProductoService;
 import com.celyng.ecommerce.infrastructure.entypoint.models.ProductoRequest;
 import com.celyng.ecommerce.domain.models.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/producto")
 public class ControllerProducto {
 
 
     @Autowired
-    private ProductoServiceImpl productoService;
+    private ProductoService productoService;
 
     @PostMapping
     public ResponseEntity<Producto> crearProducto(@RequestBody ProductoRequest request)  {
@@ -44,11 +47,11 @@ public class ControllerProducto {
         return productoService.actualizarProducto(id, request);
     }
 
-
+    */
     @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
+    public void eliminarProducto(@PathVariable UUID id) {
         productoService.eliminarProducto(id);
     }
-    */
+
 }
 

@@ -5,12 +5,14 @@ import com.celyng.ecommerce.application.port.out.ProductoRepository;
 import com.celyng.ecommerce.domain.models.Producto;
 import com.celyng.ecommerce.infrastructure.drivenadapter.repository.ProductoJpaRepository;
 import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.ProductoEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@AllArgsConstructor
 public class ProductoRepositoryAdapter implements ProductoRepository {
 
-    ProductoJpaRepository repository;
+    private final ProductoJpaRepository repository;
 
     @Override
     public ProductoEntity save(Producto producto){

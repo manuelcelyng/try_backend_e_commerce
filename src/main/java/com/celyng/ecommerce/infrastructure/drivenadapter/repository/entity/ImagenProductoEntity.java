@@ -17,6 +17,7 @@ public class ImagenProductoEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "imagen_id")
     private UUID imagenId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,6 +26,8 @@ public class ImagenProductoEntity {
 
     private String url;
 
+    @Column(name = "created_at")
     private ZonedDateTime createdAt;
+    @Column(name = "updated_at")
     private ZonedDateTime updatedAt;
 }

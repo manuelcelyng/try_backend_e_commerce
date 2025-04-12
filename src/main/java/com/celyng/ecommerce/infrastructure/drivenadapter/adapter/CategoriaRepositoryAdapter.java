@@ -6,12 +6,14 @@ import com.celyng.ecommerce.application.port.out.CategoriaRepository;
 import com.celyng.ecommerce.domain.models.Categoria;
 import com.celyng.ecommerce.infrastructure.drivenadapter.repository.CategoriaJpaRepository;
 import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.CategoriaEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@AllArgsConstructor
 public class CategoriaRepositoryAdapter implements CategoriaRepository {
 
-    CategoriaJpaRepository repository;
+    private final CategoriaJpaRepository repository;
 
     @Override
     public CategoriaEntity save(Categoria categoria) {

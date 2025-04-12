@@ -17,11 +17,14 @@ public class MarcaEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "marca_id")
     private UUID marcaId;
 
     private String nombre;
     private String descripcion;
 
+    @Column(name = "created_at")
     private ZonedDateTime createdAt;
+    @Column(name = "updated_at")
     private ZonedDateTime updatedAt;
 }

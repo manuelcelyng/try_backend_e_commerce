@@ -1,9 +1,6 @@
 package com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.ZonedDateTime;
@@ -20,11 +17,14 @@ public class CategoriaEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "categoria_id")
     private UUID categoriaId;
 
     private String nombre;
     private String descripcion;
 
+    @Column(name = "created_at")
     private ZonedDateTime createdAt;
+    @Column(name = "updated_at")
     private ZonedDateTime updatedAt;
 }

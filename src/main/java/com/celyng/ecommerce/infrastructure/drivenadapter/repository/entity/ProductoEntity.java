@@ -18,6 +18,7 @@ public class ProductoEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "producto_id")
     private UUID productoId;
 
     private String nombre;
@@ -40,6 +41,8 @@ public class ProductoEntity {
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImagenProductoEntity> imagenes;
 
+    @Column(name = "created_at")
     private ZonedDateTime createdAt;
+    @Column(name = "updated_at")
     private ZonedDateTime updatedAt;
 }
