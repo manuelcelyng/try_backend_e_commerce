@@ -2,11 +2,12 @@ package com.celyng.ecommerce.application.mapper;
 
 import com.celyng.ecommerce.domain.models.Producto;
 import com.celyng.ecommerce.domain.valueObject.Money;
-import com.celyng.ecommerce.repository.entity.ImagenProductoEntity;
-import com.celyng.ecommerce.repository.entity.ProductoEntity;
+import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.ImagenProductoEntity;
+import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.ProductoEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductoMapper {
 
@@ -50,7 +51,7 @@ public class ProductoMapper {
                     ImagenProductoEntity imagenEntity = ImagenProductoMapper.toEntity(i);
                     imagenEntity.setProducto(entity); // relación inversa
                     return imagenEntity;
-                }).toList();
+                }).collect(Collectors.toList());
 
         entity.setImagenes(imagenes);
         return entity;

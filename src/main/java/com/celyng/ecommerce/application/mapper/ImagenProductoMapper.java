@@ -1,7 +1,7 @@
 package com.celyng.ecommerce.application.mapper;
 
 import com.celyng.ecommerce.domain.models.ImagenProducto;
-import com.celyng.ecommerce.repository.entity.ImagenProductoEntity;
+import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.ImagenProductoEntity;
 
 public class ImagenProductoMapper {
 

@@ -1,4 +1,4 @@
-package com.celyng.ecommerce.repository.entity;
+package com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

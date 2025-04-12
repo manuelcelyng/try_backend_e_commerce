@@ -1,16 +1,13 @@
-package com.celyng.ecommerce.controller;
+package com.celyng.ecommerce.infrastructure.entypoint.controller;
 
 
-import com.celyng.ecommerce.application.ProductoService;
-import com.celyng.ecommerce.application.models.ProductoRequest;
+import com.celyng.ecommerce.application.ProductoServiceImpl;
+import com.celyng.ecommerce.infrastructure.entypoint.models.ProductoRequest;
 import com.celyng.ecommerce.domain.models.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/producto")
@@ -18,10 +15,10 @@ public class ControllerProducto {
 
 
     @Autowired
-    private ProductoService productoService;
+    private ProductoServiceImpl productoService;
 
     @PostMapping
-    public ResponseEntity<Producto> crearProducto(@RequestBody ProductoRequest request) {
+    public ResponseEntity<Producto> crearProducto(@RequestBody ProductoRequest request)  {
         Producto creado = productoService.crearProducto(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }

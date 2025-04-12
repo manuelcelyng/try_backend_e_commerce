@@ -1,7 +1,7 @@
 package com.celyng.ecommerce.application.mapper;
 
 import com.celyng.ecommerce.domain.models.Categoria;
-import com.celyng.ecommerce.repository.entity.CategoriaEntity;
+import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.CategoriaEntity;
 
 public class CategoriaMapper {
 

@@ -1,4 +1,4 @@
-package com.celyng.ecommerce.application.models;
+package com.celyng.ecommerce.infrastructure.entypoint.models;
 
 import lombok.Data;
 

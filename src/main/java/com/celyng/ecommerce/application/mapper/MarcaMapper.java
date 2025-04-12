@@ -1,7 +1,7 @@
 package com.celyng.ecommerce.application.mapper;
 
 import com.celyng.ecommerce.domain.models.Marca;
-import com.celyng.ecommerce.repository.entity.MarcaEntity;
+import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.MarcaEntity;
 
 public class MarcaMapper {
     public static Marca toDomain(MarcaEntity entity) {
