@@ -1,5 +1,6 @@
 package com.celyng.ecommerce.application;
 
+import com.celyng.ecommerce.application.mapper.ImagenProductoMapper;
 import com.celyng.ecommerce.application.port.in.ProductoService;
 import com.celyng.ecommerce.infrastructure.entypoint.models.ProductoRequest;
 import com.celyng.ecommerce.domain.exception.ProductoDomainException;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -77,6 +79,51 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void eliminarProducto(UUID id) {
         productoServiceImplHelper.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> obtenerTodos() {
+        List<ProductoEntity> productoEntities  =  productoServiceImplHelper.obtenerTodos();
+        return productoEntities.stream().map(ProductoMapper::toDomain).toList();
+    }
+
+    @Override
+    public Producto actualizarProducto(String  id, ProductoRequest request) {
+
+        MarcaEntity marca = checkMarca(request.getMarcaId());
+        CategoriaEntity categoria = checkCategoria(request.getCategoriaId());
+
+        ProductoEntity existente  = productoServiceImplHelper.findById(id);
+        existente.setNombre(request.getNombre());
+        existente.setDescripcion(request.getDescripcion());
+        existente.setReferencia(request.getReferencia());
+        existente.setPrecio(request.getPrecio());
+        existente.setStock(request.getStock());
+        existente.setStatus(request.isStatus());
+        existente.setCategoria(categoria);
+        existente.setMarca(marca);
+
+
+        request.getImagenes().forEach(
+                imagenRequest -> {
+                    if(existente.getImagenes().stream().noneMatch(imagen -> imagen.getUrl().equals(imagenRequest.getUrl()))){
+                        ImagenProducto imagenProducto = ImagenProducto.builder()
+                                .url(imagenRequest.getUrl())
+                                .productoId(existente.getProductoId())
+                                .createdAt(ZonedDateTime.now())
+                                .updatedAt(ZonedDateTime.now())
+                                .build();
+                        existente.getImagenes().add(ImagenProductoMapper.toEntity(imagenProducto));
+                    }
+                });
+
+        existente.getImagenes().removeIf(
+                imagen -> request.getImagenes().stream()
+                        .noneMatch(i -> i.getUrl().equals(imagen.getUrl()))
+        );
+
+        ProductoEntity productoEntity = productoServiceImplHelper.actualizarProducto(existente);
+        return ProductoMapper.toDomain(productoEntity);
     }
 
 

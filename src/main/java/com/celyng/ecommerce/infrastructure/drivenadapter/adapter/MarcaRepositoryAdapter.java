@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Repository
 @AllArgsConstructor
 public class MarcaRepositoryAdapter implements MarcaRepository {
@@ -19,5 +21,10 @@ public class MarcaRepositoryAdapter implements MarcaRepository {
     public MarcaEntity save(Marca marca) {
         MarcaEntity entity = MarcaMapper.toEntity(marca);
         return repository.save(entity);
+    }
+
+    @Override
+    public List<MarcaEntity> getAll() {
+        return repository.findAll();
     }
 }

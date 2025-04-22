@@ -2,6 +2,10 @@ spring:
   application:
     name: "ecommerce product"
 
+  web:
+    resources:
+      static-locations: file:uploads/
+
   datasource:
     url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/ecommerce}
     username: ${POSTGRES_USERNAME:postgres}
@@ -16,8 +20,14 @@ spring:
   jackson: # Para manejar zona horaria
     time-zone: UTC
 
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ecom
+
 server:
   port: 8080
+
 
 
 logging:

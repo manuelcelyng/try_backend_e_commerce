@@ -4,11 +4,13 @@ import com.celyng.ecommerce.application.mapper.CategoriaMapper;
 import com.celyng.ecommerce.application.port.in.CategoriaService;
 import com.celyng.ecommerce.application.port.out.CategoriaRepository;
 import com.celyng.ecommerce.domain.models.Categoria;
+import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.CategoriaEntity;
 import com.celyng.ecommerce.infrastructure.entypoint.models.CategoriaRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -29,5 +31,10 @@ public class CategoriaServiceImpl implements CategoriaService {
                 .build();
 
         return CategoriaMapper.toDomain(categoriaRepository.save(categoria));
+    }
+
+    @Override
+    public List<CategoriaEntity> getAll() {
+        return categoriaRepository.getAll();
     }
 }

@@ -5,6 +5,7 @@ import com.celyng.ecommerce.infrastructure.drivenadapter.repository.entity.Produ
 import com.celyng.ecommerce.infrastructure.entypoint.models.ProductoRequest;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ProductoService {
@@ -12,4 +13,8 @@ public interface ProductoService {
     Producto crearProducto(ProductoRequest productoRequest);
 
     void eliminarProducto(UUID id);
+
+    List<Producto> obtenerTodos();
+
+    Producto actualizarProducto(String id, ProductoRequest request);
 }
